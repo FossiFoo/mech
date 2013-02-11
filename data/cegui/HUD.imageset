@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Imageset Name="HUD" Imagefile="HUD/HUD.png" NativeHorzRes="100" NativeVertRes="100" AutoScaled="true">
+  <!--Image Name="cursor" XPos="0" YPos="0" Width="100" Height="100" /-->
+</Imageset>

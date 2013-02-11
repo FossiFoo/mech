@@ -11,3 +11,43 @@
 *.lai
 *.la
 *.a
+
+# emacs backups
+*~
+#*#
+
+# CS ignores
+*.app
+*.csbundle
+*.csplugin
+*.dbg
+*.dll
+*.exe
+*.ilk
+*.log
+*.manifest
+*.pdb
+*.pyd
+*.so
+*.zip
+Jamconfig
+Jamconfig.msvcgen
+Jamfile
+Makefile
+autom4te.cache
+config.*
+crystalspace.jar
+cs-config
+cs-config-*
+cspace.py
+docconv
+jam
+out
+pycscegui.py
+win32libs
+winlibs
+allocations.txt
+configure
+
+# project ignore
+mech

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GUILayout>
+  <Window Type="DefaultWindow" Name="root">
+    <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+    <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+    <Property Name="MousePassThroughEnabled" Value="True" />
+
+    <Window Type="DefaultWindow" Name="HUD" >
+      <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+      <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{1,0}}" />
+      <Property Name="MousePassThroughEnabled" Value="True" />
+
+      <Window Type="DefaultWindow" Name="HUD/Target" >
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{.5,0}}" />
+
+        <Window Type="SleekSpace/StaticImage" Name="HUD/Target/Cursor" >
+          <Property Name="Image" Value="set:SleekSpace image:MouseMoveCursor" />
+          <Property Name="UnifiedAreaRect" Value="{{0.5,-20},{0.5,-20},{0.5,20},{0.5,20}}" />
+        </Window>
+      </Window>
+
+      <Window Type="SleekSpace/FrameWindow" Name="HUD/Cockpit" >
+        <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+        <Property Name="UnifiedAreaRect" Value="{{0,0},{0.5,0},{1,0},{1,0}}" />
+        <Property Name="MousePassThroughEnabled" Value="True" />
+
+        <Property Name="FrameEnabled" Value="False" />
+        <Property Name="SizingEnabled" Value="False" />
+        <Property Name="DragMovingEnabled" Value="False" />
+        <Property Name="TitlebarEnabled" Value="False" />
+        <Property Name="CloseButtonEnabled" Value="True" />
+        <Property Name="RollUpEnabled" Value="False" />
+        <Property Name="SizingBorderThickness" Value="0.0" />
+
+        <Window Type="SleekSpace/FrameWindow" Name="HUD/Cockpit/HUDLeft" >
+          <Property Name="Text" Value="Mech" />
+          <Property Name="UnifiedSize" Value="{{0.5,0},{0.5,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{0.5,0},{1,0}}" />
+          <Property Name="FrameEnabled" Value="True" />
+          <Property Name="SizingBorderThickness" Value="10.0" />
+        </Window >
+        <Window Type="SleekSpace/FrameWindow" Name="HUD/Cockpit/HUDRight" >
+          <Property Name="Text" Value="HUD" />
+          <Property Name="UnifiedSize" Value="{{0.5,0},{0.5,0}}" />
+          <Property Name="UnifiedAreaRect" Value="{{0.5,0},{0,0},{1,0},{1,0}}" />
+          <Property Name="FrameEnabled" Value="True" />
+         </Window>>
+      </Window>
+    </Window>
+  </Window>
+</GUILayout>
