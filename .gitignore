@@ -15,7 +15,7 @@
 # emacs backups
 *~
 #*#
-.emacs.desktop
+.emacs.desktop*
 
 # CS ignores
 *.app
