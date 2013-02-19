@@ -38,13 +38,33 @@
           <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{0.5,0},{1,0}}" />
           <Property Name="FrameEnabled" Value="True" />
           <Property Name="SizingBorderThickness" Value="10.0" />
+
+          <Window Type="SleekSpace/MultiLineEditbox" Name="HUD/Cockpit/Text" >
+            <Property Name="Text" Value="Some longerText" />
+            <Property Name="UnifiedAreaRect" Value="{{0,0},{0,30},{1,0},{1,0}}" />
+            <Property Name="FrameEnabled" Value="False" />
+            <Property Name="SizingBorderThickness" Value="0.0" />
+          </Window >
         </Window >
         <Window Type="SleekSpace/FrameWindow" Name="HUD/Cockpit/HUDRight" >
           <Property Name="Text" Value="HUD" />
           <Property Name="UnifiedSize" Value="{{0.5,0},{0.5,0}}" />
           <Property Name="UnifiedAreaRect" Value="{{0.5,0},{0,0},{1,0},{1,0}}" />
           <Property Name="FrameEnabled" Value="True" />
-         </Window>>
+
+            <Window Type="SleekSpace/ProgressBar" Name="HUD/Cockpit/Speed/Bar" >
+                <Property Name="StepSize" Value="0.01" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="CurrentProgress" Value="0" />
+                <Property Name="UnifiedAreaRect" Value="{{0.04,0},{0.1,0},{0.98,0},{0.15,0}}" />
+            </Window>
+            <Window Type="SleekSpace/ProgressBar" Name="HUD/Cockpit/DOT/Bar" >
+                <Property Name="StepSize" Value="0.01" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="CurrentProgress" Value="0.5" />
+                <Property Name="UnifiedAreaRect" Value="{{0.04,0},{0.16,0},{0.98,0},{0.21,0}}" />
+            </Window>
+          </Window>
       </Window>
     </Window>
   </Window>

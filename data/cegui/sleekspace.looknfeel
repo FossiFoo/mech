@@ -2722,6 +2722,7 @@
     ***************************************************
     -->
     <WidgetLook name="SleekSpace/MultiLineEditbox">
+        <PropertyDefinition name="NormalTextColour" initialValue="FFFFFFFF" />
         <Property name="MouseCursorImage" value="set:SleekSpace image:MouseTextBar" />
         <Property name="SelectionBrushImage" value="set:SleekSpace image:MultiLineEditboxSelectionBrush" />
         <NamedArea name="TextArea">
@@ -3101,7 +3102,7 @@
             <Layer>
                 <Section section="normal" />
                 <Section section="label">
-                    <ColourProperty name="NormalTextColour" />
+2                    <ColourProperty name="NormalTextColour" />
                 </Section>
             </Layer>
         </StateImagery>

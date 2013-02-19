@@ -101,13 +101,30 @@ void AppMech::CaptureInputState()
   csVector3 currentBounce = bounce * (factor * movement.Norm());
   obj_move = obj_move + movement + currentBounce;
 
-  printf("%f %f - %s\n", factor, movement.Norm(), currentBounce.Description().GetData());
+  //printf("%f %f - %s\n", factor, movement.Norm(), currentBounce.Description().GetData());
 
 
   // To get the camera/actor position, you can use that:
   iCamera* cam = view->GetCamera ();
-  csVector3 pos (cam->GetTransform ().GetOrigin ());
-  printf("%s\n", pos.Description().GetData());
+  csVector3 pos (cam->GetTransform ().GetFront());
+  csVector3 up = csVector3(0, 1, 0);
+  float dot = pos * up;
+
+  if (dot > .2f || dot < -.5f) {
+    obj_rotate += csVector3(-dot, 0 , 0);
+  }
+
+  CEGUI::WindowManager* winMgr = cegui->GetWindowManagerPtr ();
+  CEGUI::Window* textWindow = winMgr->getWindow("HUD/Cockpit/Text");
+  CEGUI::ProgressBar* speedBar = (CEGUI::ProgressBar*)winMgr->getWindow("HUD/Cockpit/Speed/Bar");
+  CEGUI::ProgressBar* dotBar = (CEGUI::ProgressBar*)winMgr->getWindow("HUD/Cockpit/DOT/Bar");
+
+  csString dotString = csString("DOT: ").Append(dot).Append("\n");
+  dotString.Append("SPD: ").Append(speed);
+  textWindow->setText(dotString.GetData());
+
+  dotBar->setProgress((dot + .5f) / 0.7f);
+  speedBar->setProgress((speed + 5.f) / 10.f);
 
   collider_actor.Move (float (elapsed_time) / 1000.0f,
                        1.0f,
@@ -307,7 +324,7 @@ void AppMech::SetupCegui()
   cegui->GetSystemPtr ()->setGUISheet(winMgr->loadWindowLayout("mech.layout"));
 
   // Subscribe to the clicked event for the exit button
-  //CEGUI::Window* btn = winMgr->getWindow("Demo7/Window1/Quit");
+  // CEGUI::Window* wnd = winMgr->getWindow("HUD/Cockpit/HUDLeft/Text");
   // btn->subscribeEvent(CEGUI::PushButton::EventClicked,
   //   CEGUI::Event::Subscriber(&CEGUITest::OnExitButtonClicked, this));
 }
