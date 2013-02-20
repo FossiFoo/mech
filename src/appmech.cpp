@@ -23,6 +23,7 @@ AppMech::AppMech() : csApplicationFramework()
   SetApplicationName("mech");
   movement = csVector3(0);
   speed = 0;
+  gyro = 0;
 }
 
 AppMech::~AppMech()
@@ -99,8 +100,8 @@ void AppMech::CaptureInputState()
   g2d->SetMousePosition (centerX, centerY);
 
   csVector3 currentBounce = bounce * (factor * movement.Norm());
-  obj_move = obj_move + movement + currentBounce;
-
+  //FIXME (CM): readd bounce after move to CEL
+  obj_move = obj_move + movement;
   //printf("%f %f - %s\n", factor, movement.Norm(), currentBounce.Description().GetData());
 
 
@@ -108,23 +109,32 @@ void AppMech::CaptureInputState()
   iCamera* cam = view->GetCamera ();
   csVector3 pos (cam->GetTransform ().GetFront());
   csVector3 up = csVector3(0, 1, 0);
-  float dot = pos * up;
 
-  if (dot > .2f || dot < -.5f) {
-    obj_rotate += csVector3(-dot, 0 , 0);
+  //TODO (CM): add roll to camera
+  float pitch = pos * up;
+
+  if (pitch > .2f || pitch < -.5f) {
+    obj_rotate += csVector3(-pitch, 0 , 0);
+    gyro = fabs(pitch);
+  } else {
+    gyro = 0;
   }
 
   CEGUI::WindowManager* winMgr = cegui->GetWindowManagerPtr ();
   CEGUI::Window* textWindow = winMgr->getWindow("HUD/Cockpit/Text");
   CEGUI::ProgressBar* speedBar = (CEGUI::ProgressBar*)winMgr->getWindow("HUD/Cockpit/Speed/Bar");
-  CEGUI::ProgressBar* dotBar = (CEGUI::ProgressBar*)winMgr->getWindow("HUD/Cockpit/DOT/Bar");
+  CEGUI::ProgressBar* pitchBar = (CEGUI::ProgressBar*)winMgr->getWindow("HUD/Cockpit/Tilt/Bar");
+  CEGUI::ProgressBar* gyroBar = (CEGUI::ProgressBar*)winMgr->getWindow("HUD/Cockpit/Gyro/Bar");
 
-  csString dotString = csString("DOT: ").Append(dot).Append("\n");
-  dotString.Append("SPD: ").Append(speed);
-  textWindow->setText(dotString.GetData());
+  csString pitchString = csString();
+  pitchString.Append("SPEED: ").Append(speed).Append("\n");
+  pitchString.Append("\n").Append("TILT: ").Append(pitch);
+  pitchString.Append("\n").Append("GYRO: ").Append(gyro);
+  textWindow->setText(pitchString.GetData());
 
-  dotBar->setProgress((dot + .5f) / 0.7f);
+  pitchBar->setProgress((pitch + .5f) / 0.7f);
   speedBar->setProgress((speed + 5.f) / 10.f);
+  gyroBar->setProgress(gyro);
 
   collider_actor.Move (float (elapsed_time) / 1000.0f,
                        1.0f,
@@ -314,7 +324,7 @@ void AppMech::SetupCegui()
   cegui->GetSchemeManagerPtr ()->create("SleekSpace.scheme");
 
   cegui->GetSystemPtr ()->setDefaultMouseCursor("SleekSpace", "MouseArrow");
-  // cegui->GetMouseCursorPtr ()->hide();
+  //cegui->GetMouseCursorPtr ()->hide();
 
   cegui->GetFontManagerPtr ()->createFreeTypeFont("DejaVuSans", 10, true, "/fonts/ttf/DejaVuSans.ttf");
 

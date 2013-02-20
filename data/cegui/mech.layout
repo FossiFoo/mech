@@ -14,8 +14,8 @@
         <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{1,0},{.5,0}}" />
 
         <Window Type="SleekSpace/StaticImage" Name="HUD/Target/Cursor" >
-          <Property Name="Image" Value="set:SleekSpace image:MouseMoveCursor" />
-          <Property Name="UnifiedAreaRect" Value="{{0.5,-20},{0.5,-20},{0.5,20},{0.5,20}}" />
+          <Property Name="Image" Value="set:HUD image:cursor" />
+          <Property Name="UnifiedAreaRect" Value="{{0.5,-25},{0.5,-25},{0.5,25},{0.5,25}}" />
         </Window>
       </Window>
 
@@ -37,6 +37,7 @@
           <Property Name="UnifiedSize" Value="{{0.5,0},{0.5,0}}" />
           <Property Name="UnifiedAreaRect" Value="{{0,0},{0,0},{0.5,0},{1,0}}" />
           <Property Name="FrameEnabled" Value="True" />
+          <Property Name="TitlebarEnabled" Value="True" />
           <Property Name="SizingBorderThickness" Value="10.0" />
 
           <Window Type="SleekSpace/MultiLineEditbox" Name="HUD/Cockpit/Text" >
@@ -48,7 +49,6 @@
         </Window >
         <Window Type="SleekSpace/FrameWindow" Name="HUD/Cockpit/HUDRight" >
           <Property Name="Text" Value="HUD" />
-          <Property Name="UnifiedSize" Value="{{0.5,0},{0.5,0}}" />
           <Property Name="UnifiedAreaRect" Value="{{0.5,0},{0,0},{1,0},{1,0}}" />
           <Property Name="FrameEnabled" Value="True" />
 
@@ -56,13 +56,19 @@
                 <Property Name="StepSize" Value="0.01" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="CurrentProgress" Value="0" />
-                <Property Name="UnifiedAreaRect" Value="{{0.04,0},{0.1,0},{0.98,0},{0.15,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.04,0},{0.1,0},{0.98,0},{0.2,0}}" />
             </Window>
-            <Window Type="SleekSpace/ProgressBar" Name="HUD/Cockpit/DOT/Bar" >
+            <Window Type="SleekSpace/ProgressBar" Name="HUD/Cockpit/Tilt/Bar" >
                 <Property Name="StepSize" Value="0.01" />
                 <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
                 <Property Name="CurrentProgress" Value="0.5" />
-                <Property Name="UnifiedAreaRect" Value="{{0.04,0},{0.16,0},{0.98,0},{0.21,0}}" />
+                <Property Name="UnifiedAreaRect" Value="{{0.04,0},{0.5,0},{0.98,0},{0.60,0}}" />
+            </Window>
+            <Window Type="SleekSpace/ProgressBar" Name="HUD/Cockpit/Gyro/Bar" >
+                <Property Name="StepSize" Value="0.1" />
+                <Property Name="UnifiedMaxSize" Value="{{1,0},{1,0}}" />
+                <Property Name="CurrentProgress" Value="0" />
+                <Property Name="UnifiedAreaRect" Value="{{0.04,0},{0.60,0},{0.98,0},{0.70,0}}" />
             </Window>
           </Window>
       </Window>
